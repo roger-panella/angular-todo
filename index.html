@@ -6,8 +6,9 @@
   <link href='styles/main.css' rel='stylesheet' type="text/css">
 </head>
 <body ng-app="todoListApp">
+
   <div ng-controller="mainCtrl" class="list">
-    <h1>My ToDOs</h1>
+    <h1 ng-click="helloWorld()">My ToDOs</h1>
     <input type="checkbox"/>
     <label class="editing-label" ng-click="helloWorld()">A sample todo!</label>
     <input class="editing-label" type="text"/>
