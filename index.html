@@ -5,30 +5,16 @@
   <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <link href='styles/main.css' rel='stylesheet' type="text/css">
 </head>
+
+<!-- The ng-app tag "bootstraps" or tell angular to run the application in the template.  Tells angular where to initialize the app. -->
 <body ng-app="todoListApp">
-  <h1 ng-click="helloWorld()">My ToDOs</h1>
-  <div ng-controller="mainCtrl" class="list">
-    <div class="add">
-      <a href="">+ Add a New Task</a>
-    </div>
-    <div class="item" ng-class="{'editing-item': editing, 'edited': todo.edited}" ng-repeat="todo in todos">
-      <input ng-model="todo.completed" type="checkbox"/>
-      <label ng-hide="editing" ng-click="helloWorld()">{{todo.name}}</label>
-      <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label" type="text"/>
+  <h1 ng-click="helloWorld()">My TODOs</h1>
+  <todos></todos>
 
-      <div class="actions">
-        <a href="" ng-click="editing = !editing">Edit</a>
-        <a href="" ng-click="helloConsole()">Save</a>
-        <a href="" class="Delete">Delete</a>
-      </div>
-    </div>
-    <!-- {{todos}} -->
-  </div>
-
-  <!-- <div ng-controller="imASibling">
-    {{foobar}}
-  </div> -->
-  <script src="vendor/angular.min.js" type="text/javascript"></script>
+  <script src="vendor/angular.js" type="text/javascript"></script>
   <script src="scripts/app.js" type="text/javascript"></script>
+  <script src="scripts/controllers/main.js" type="text/javascript"></script>
+  <script src="scripts/services/data.js" type="text/javascript"></script>
+  <script src="scripts/directives/todos.js" type="text/javascript"></script>
 </body>
 </html>
