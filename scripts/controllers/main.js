@@ -12,9 +12,14 @@ angular.module('todoListApp')
 // dataService is defining that service as a dependency in the mainCtrl controllers
 // Now, dataService's methods can be accessed as any other object could be.
 
+
 .controller('mainCtrl', function($scope, dataService) {
+
+  // function to create new todos
+  //  A single key needs to be added, the name key
   $scope.addTodo = function() {
     var todo = {name: "This is a new todo."};
+    // This pushes the object into the todos array (unshift method pushes to the beginning, rather than 'push', which pushes to end)
     $scope.todos.unshift(todo);
   };
 
