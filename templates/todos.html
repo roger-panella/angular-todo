@@ -4,6 +4,10 @@
   </div>
   <!-- ng-repeat is the built in directive to repeat the html template through a javascript array or object
   'todo in todos' is the syntax.  So, do everything in this div for each item from the 'todos' json object. -->
+  <!-- ng-class - This is a directive for triggering CSS classes based on state.  You pass in an object, with the CSS class as the key.
+  The expression is the value.  If it evaluates to 'true', the class is passed to the element, which allows CSS written for that class to be applied -->
+        <!-- The "'edited': todo.edited" key value pair applies a class based on the ng-click directive in the label. -->
+        <!-- This will be false when a todo hasn't been edited (so class and css aren't added) but true when a todo has been edited, so class and CSS WILL be applied -->
   <div class="item" ng-class="{'editing-item': editing, 'edited': todo.edited, 'completed': todo.completed}" ng-repeat="todo in todos | orderBy: 'completed'" ng-init="todo.completed = false">
 
     <!-- ng-model here makes the checkbox state recorded as true or false (checked or unchecked) in the 'todo' object with the 'completed' key -->
@@ -31,12 +35,19 @@
       <!-- when inside the ng-repeat directive, the ng-model="todo.name" automatically assigns each todo as a value for the name key in a data object, inside the array. -->
       ng-blur = Means when a user clicks somewhere OUTSIDE of the element. So, when a user clicks outside the input, it makes editing false.
           <!-- - In practice, this means that when they are editing, they can click anywhere else on the screen (blur), and editing becomes false, making the box disappear.  (ng-show happens when editing = true) -->
+          <!-- ng-change allows you to watch for changes, then evaluate an expression when the value changes. -->
+              <!-- In this case, if the inputs value changes at all (is edited at all), todo.edited value becomes false in the data object.  This allows you to keep track of when an input has been edited.  Here, its used to add special CSS to edited todos (adding 'edited' text to todos that have been edited.) -->
     <input ng-change="todo.edited = true" ng-blur="editing = false;" ng-show="editing" ng-model="todo.name" class="editing-label" type="text"/>
 
     <!-- Save and Edit buttons -->
     <!-- The hrefs are empty, since angular apps are single pages, so don't want to go anywhere -->
     <div class="actions">
+      <!-- // ng-click directive is used to save the current todo -->
       <a href="" ng-click="saveTodos(todo)">Save</a>
+      <!-- // ng-click="deleteTodo" function runs the deleteTodo function on click that is in the main.js file
+      // This method was part of the dataService service, in the data.js, and can be used in main.js (and in this html scope) because
+      //    dataService is a dependency in the controller that's in main.js -->
+      <!-- // For each item in a ng-repeat, angular gives you an $index variable.  $index is the position of the current todo in the todos array. -->
       <a href="" ng-click="deleteTodo(todo, $index)"  class="Delete">delete</a>
     </div>
    </div>
