@@ -7,6 +7,11 @@ angular.module('todoListApp')    // No second parameter this time, since we want
        }
    })
 
+  // templateUrl specifies the file used for the main angular html body
+  // This is the inserted into the html file (index.html) with tags:  <todo></todo>
+  // "controller" key is a better way to specify the controller for a directive (vs. 'ng-controller' and putting it in a tag)
+  // This makes 'mainCtrl' the controller for <todos></todos>
+  // replace key to 'true' just gets rid fo the <todos> tags, while still inserting the html into the page.
 
 
 

@@ -62,6 +62,9 @@ angular.module('todoListApp')
 
 // Save todo.  Uses the saveTodo method from the dataService service
   $scope.saveTodos = function() {
+    // This function is to save all todos when any save button is clicked (rather than jsut saving one)
+    // $scope.todos is an array and filter is just an array method that filters based on the functions
+      // Filter by todos that todo.edited = true and return those todos.
     var filteredTodos = $scope.todos.filter(function(todo) {
       if(todo.edited){
         return todo;

@@ -9,6 +9,8 @@
 <!-- The ng-app tag "bootstraps" or tell angular to run the application in the template.  Tells angular where to initialize the app. -->
 <body ng-app="todoListApp">
   <h1 ng-click="helloWorld()">My TODOs</h1>
+  <!-- The todos tag inserts the template, which is defined in the 'todos' directive in the 'todos.js' file.   -->
+  <!-- This keeps the html file less cluttered, which can be an issue in larger applications -->
   <todos></todos>
 
   <script src="vendor/angular.js" type="text/javascript"></script>

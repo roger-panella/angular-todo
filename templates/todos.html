@@ -11,10 +11,23 @@
   The expression is the value.  If it evaluates to 'true', the class is passed to the element, which allows CSS written for that class to be applied -->
         <!-- The "'edited': todo.edited" key value pair applies a class based on the ng-click directive in the label. -->
         <!-- This will be false when a todo hasn't been edited (so class and css aren't added) but true when a todo has been edited, so class and CSS WILL be applied -->
+        <!-- Adding 'completed': todo.completed adds the class completed which applies appropriates styles (crossing out todo) -->
+        <!-- "orderBy" is a built in angular command that allows you to specify an attribute of the list elements to order the list by -->
+          <!-- We're using it to move completed (true) todos to the bottom of the list -->
+              <!-- But, this makes angular put the "true" completed tasks at the top -->
+              <!-- To reverse a filter, add another colon and specify 'true'  'reverse is true' orderBy: 'completed': true -->
+              <!-- This didnt' work how we wanted though - undefined would be first, true would be second, then false would be last.  But, because undefined and false aren't treated the same.  So, undefined will be above, then false, then true, putting completed todos in the middle
+                Solution:  "ng-init" - This makes every todo start out with a value.  In this case, completed for all is false, rather than undefined.  We also got rid of the reverse at this point, since it wasn't needed. -->
+
+                <!-- To make this work with new Todos, we had to use the unshift method, rather than push in the main js.  This will put new todos to the beginning of the list, rather than the middle (between false completed todos and true completed todos) -->
+
   <div class="item" ng-class="{'editing-item': editing, 'edited': todo.edited, 'completed': todo.completed}" ng-repeat="todo in todos | orderBy: 'completed'" ng-init="todo.completed = false">
 
     <!-- ng-model here makes the checkbox state recorded as true or false (checked or unchecked) in the 'todo' object with the 'completed' key -->
     <input type="checkbox" ng-model="todo.completed"/>
+    <!-- This span element is because of the CSS span element with custom checkboxes -->
+    <!-- "todo.completed = !todo.completed" makes a click change the completed key value to its opposite. -->
+    <!-- "todo.edited = true" - this is so that checked (or unchecked) todos return a value of edited = true.  This allows them to be saved as a group with other todos in the saveTodos function.  --> -->
     <span ng-click="todo.completed = !todo.completed; todo.edited = true"></span>
 
     <!-- <label> tag is used to display the to-do -->
@@ -24,8 +37,10 @@
     <!-- ng-click causes an expression to evaluate on click. -->
     <!-- Here, it causes the editing to be true, which triggers the 'editing true' CSS -->
     <!-- ng-click="editing = !editing" causes it to
-    do the revers of its current state -->
+    do the reverse of its current state -->
     <!-- ng-hide - When editing is true, the label is hidden, when false, its not hidden -->
+    <!-- ng-click="editing=true" - This causes the editing to be true when the user clicks on the todo box, not just the edit button -->
+
     <label ng-click="editing = true" ng-hide="editing" ng-click="helloWorld()">
       <!-- {{todo.name}} just renders the name from the scope data object.  {{}} is an angular convention. -->
       {{todo.name}}</label>

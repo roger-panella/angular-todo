@@ -40,6 +40,7 @@ angular.module('todoListApp')
     // other logic
   };
 
+  // "filtered todos" from main.js is passed into this function from main.js
   this.saveTodos = function(todo) {
     console.log(todo.length + " todos have been saved!");
     // other logic...
